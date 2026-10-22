@@ -1,0 +1,19 @@
+# Reddit text (raw files and splits) is never redistributed; download it from Zenodo (see README)
+data/
+vps_bundle/data/
+vps_bundle/results/
+vps_bundle/logs/
+vps_bundle/.venv/
+
+# Archives (may contain full run files) and fitted models (contain the vocabulary)
+*.tar.gz
+results/*.pkl
+
+# Generated charts (rebuilt by 05_figures.py)
+figures/
+
+# Environment and OS files
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

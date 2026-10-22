@@ -1,0 +1,41 @@
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 11774.37it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: mental/mental-bert-base-uncased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.decoder.bias               | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+bert.pooler.dense.weight                   | MISSING    | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+bert.pooler.dense.bias                     | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (653 > 512). Running this sequence through the model will result in indexing errors
+D2_MentalBERT_1337 ep0 step0/875 loss 0.6772
+D2_MentalBERT_1337 ep0 step100/875 loss 0.6269
+D2_MentalBERT_1337 ep0 step200/875 loss 0.5864
+D2_MentalBERT_1337 ep0 step300/875 loss 0.4259
+D2_MentalBERT_1337 ep0 step400/875 loss 0.2673
+D2_MentalBERT_1337 ep0 step500/875 loss 0.9204
+D2_MentalBERT_1337 ep0 step600/875 loss 0.4028
+D2_MentalBERT_1337 ep0 step700/875 loss 0.9180
+D2_MentalBERT_1337 ep0 step800/875 loss 0.2919
+{'epoch': 1, 'train_loss': 0.498684331033911, 'val_macro_f1': 0.7820709065404017, 'val_roc_auc': 0.8848677248677248, 'epoch_time_s': 17018.023130266985}
+D2_MentalBERT_1337 ep1 step0/875 loss 0.4896
+D2_MentalBERT_1337 ep1 step100/875 loss 0.0703
+D2_MentalBERT_1337 ep1 step200/875 loss 0.2181
+D2_MentalBERT_1337 ep1 step300/875 loss 0.3713
+D2_MentalBERT_1337 ep1 step400/875 loss 0.0548
+D2_MentalBERT_1337 ep1 step500/875 loss 0.5284
+D2_MentalBERT_1337 ep1 step600/875 loss 0.5099
+D2_MentalBERT_1337 ep1 step700/875 loss 1.0564
+D2_MentalBERT_1337 ep1 step800/875 loss 0.4280
+{'epoch': 2, 'train_loss': 0.35011703556776047, 'val_macro_f1': 0.7925925925925925, 'val_roc_auc': 0.8831619047619048, 'epoch_time_s': 16889.82629043699}
+DONE D2_MentalBERT_1337 0.769132837591505 33907.940249202

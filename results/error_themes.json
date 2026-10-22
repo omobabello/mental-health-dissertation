@@ -1,0 +1,18 @@
+{
+  "description": "Qualitative coding of D2 test errors shared by the comparator (LR) and MentalBERT (median-seed run, seed 1337). Random sample (numpy default_rng(42)) of 20 shared false positives and 20 shared false negatives; coded by the author from paraphrase-level reading; no text is stored or quoted.",
+  "condition": "D2",
+  "shared_false_positives_total": 121,
+  "shared_false_negatives_total": 77,
+  "sample_size_per_type": 20,
+  "false_positive_themes": {
+    "explicit depressive or suicidal content posted in a non-depression mental-health subreddit": 14,
+    "general life stress (work, money, health, substances) without depressive vocabulary": 5,
+    "concern for a third party who disclosed depression": 1
+  },
+  "false_negative_themes": {
+    "loneliness, relationship or social-skill framing without depression vocabulary": 10,
+    "treatment, recovery or help-seeking logistics": 5,
+    "other self-focused distress (depersonalisation, future anxiety, impostor feelings, substance use)": 3,
+    "short supportive or request posts with little content": 2
+  }
+}

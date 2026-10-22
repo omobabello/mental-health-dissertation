@@ -1,0 +1,2733 @@
+{
+  "meta": {
+    "bootstrap_resamples": 2000,
+    "min_delta_f1": 0.02,
+    "lexicon": {
+      "first_person": [
+        "i",
+        "me",
+        "my",
+        "myself",
+        "mine",
+        "im",
+        "i'm",
+        "i've",
+        "ive"
+      ],
+      "absolutist": [
+        "always",
+        "never",
+        "nothing",
+        "completely",
+        "everything",
+        "constantly",
+        "totally",
+        "entire",
+        "anymore",
+        "every",
+        "all",
+        "whole",
+        "absolutely",
+        "definitely"
+      ],
+      "negative_affect": [
+        "sad",
+        "depressed",
+        "depression",
+        "hopeless",
+        "worthless",
+        "empty",
+        "lonely",
+        "alone",
+        "tired",
+        "hate",
+        "pain",
+        "cry",
+        "crying",
+        "numb",
+        "suicidal",
+        "die",
+        "dead",
+        "kill",
+        "hurt",
+        "miserable",
+        "anxious",
+        "anxiety",
+        "fail",
+        "failure",
+        "useless",
+        "exhausted",
+        "sleep",
+        "therapy",
+        "therapist",
+        "medication",
+        "meds",
+        "life",
+        "feel",
+        "feeling",
+        "want",
+        "help",
+        "bad",
+        "worse",
+        "struggle"
+      ]
+    },
+    "compute": {
+      "vps_hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)",
+      "vps_runs": [
+        "D1_DistilBERT_42_n1000",
+        "D1_DistilBERT_42_n2000",
+        "D1_DistilBERT_42_n250",
+        "D1_DistilBERT_42_n4000",
+        "D1_DistilBERT_42_n500",
+        "D1_MentalBERT_1337",
+        "D1_MentalBERT_2026",
+        "D1_MentalBERT_42",
+        "D2_DistilBERT_42_n1000",
+        "D2_DistilBERT_42_n2000",
+        "D2_DistilBERT_42_n250",
+        "D2_DistilBERT_42_n4000",
+        "D2_DistilBERT_42_n500",
+        "D2_MentalBERT_1337",
+        "D2_MentalBERT_2026",
+        "D2_MentalBERT_42"
+      ],
+      "note": "Training times are hardware-specific: classical on M1 CPU, DistilBERT on M1 MPS, MentalBERT and DistilBERT learning curves on VPS CPU. Training time is the median across seeds; per-seed values and spread are kept because shared-VPS throughput varied between runs. Cross-model cost is compared on benchmark.json latency (one machine)."
+    },
+    "truncation": {
+      "max_len": 256,
+      "D1": {
+        "DistilBERT": 0.2611,
+        "MentalBERT": 0.2611
+      },
+      "D2": {
+        "DistilBERT": 0.3098,
+        "MentalBERT": 0.3098
+      },
+      "D1T": {
+        "DistilBERT": 0.24666666666666667,
+        "MentalBERT": 0.24666666666666667
+      }
+    }
+  },
+  "conditions": {
+    "D1": {
+      "models": {
+        "LR": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.9453697534976683,
+            "precision_pos": 0.8931623931623932,
+            "recall_pos": 0.9288888888888889,
+            "f1_pos": 0.9106753812636166,
+            "macro_precision": 0.9310923292046236,
+            "macro_recall": 0.94065757479649,
+            "macro_f1": 0.9356639862172209,
+            "roc_auc": 0.9871085738450153,
+            "pr_auc": 0.9692671575785156,
+            "confusion": {
+              "tn": 1001,
+              "fp": 50,
+              "fn": 32,
+              "tp": 418
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.9382446947195945,
+              "std": 0.004707275968488605,
+              "folds": [
+                0.9341176470588235,
+                0.9327773587336858,
+                0.9373292585252776,
+                0.9415245388096067,
+                0.9454746704705781
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.9855382716343506,
+              "std": 0.002373585900091611,
+              "folds": [
+                0.9842492711370263,
+                0.9829834791059281,
+                0.9846768707482992,
+                0.9858697764820213,
+                0.9899119606984775
+              ]
+            },
+            "precision": {
+              "mean": 0.905226890715219,
+              "std": 0.005052837111199974,
+              "folds": [
+                0.8976744186046511,
+                0.9069212410501193,
+                0.9061032863849765,
+                0.9129411764705883,
+                0.9024943310657596
+              ]
+            },
+            "recall": {
+              "mean": 0.9228571428571429,
+              "std": 0.013932132226978842,
+              "folds": [
+                0.919047619047619,
+                0.9047619047619048,
+                0.919047619047619,
+                0.9238095238095239,
+                0.9476190476190476
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 0.8015111669956241,
+            "infer_ms_per_sample_batch": 0.4209658840770379,
+            "infer_ms_per_sample_single": 0.6341839599917876,
+            "n_params": 50001,
+            "model_size_mb": 2.38444,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 0.837597875011852,
+            "cpu_single_ms": 0.6341839599917876,
+            "cpu_batch_ms": 0.4209658840770379,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "life",
+            "feel",
+            "fuck",
+            "friend",
+            "just",
+            "suicid",
+            "kill",
+            "shit",
+            "die",
+            "peopl",
+            "wors",
+            "anymor",
+            "don",
+            "hate",
+            "can",
+            "mental",
+            "antidepress",
+            "tire",
+            "med",
+            "haven",
+            "sad",
+            "im",
+            "exist",
+            "therapist",
+            "world",
+            "hope",
+            "like",
+            "medic",
+            "talk"
+          ],
+          "stability_jaccard": 0.8196875588179935,
+          "stability_jaccard_std": 0.05240972492815996,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "temporal": {
+            "accuracy": 0.948,
+            "precision_pos": 0.9078947368421053,
+            "recall_pos": 0.92,
+            "f1_pos": 0.9139072847682119,
+            "macro_precision": 0.9367059891107079,
+            "macro_recall": 0.94,
+            "macro_f1": 0.9383290005502951,
+            "roc_auc": 0.9877989417989419,
+            "pr_auc": 0.973645230633261,
+            "confusion": {
+              "tn": 1008,
+              "fp": 42,
+              "fn": 36,
+              "tp": 414
+            }
+          },
+          "macro_f1_ci95": [
+            0.9220418596066835,
+            0.9490257365511859
+          ],
+          "plausibility_top20": 0.5,
+          "temporal_ci95": [
+            0.9246574960606532,
+            0.9512847577968102
+          ]
+        },
+        "SVM": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.9480346435709527,
+            "precision_pos": 0.9008620689655172,
+            "recall_pos": 0.9288888888888889,
+            "f1_pos": 0.9146608315098468,
+            "macro_precision": 0.9350019120140991,
+            "macro_recall": 0.9425605243683264,
+            "macro_f1": 0.9386522548353832,
+            "roc_auc": 0.9870049688127709,
+            "pr_auc": 0.9690572199006607,
+            "confusion": {
+              "tn": 1005,
+              "fp": 46,
+              "fn": 32,
+              "tp": 418
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.9399691349690033,
+              "std": 0.0034065042720760174,
+              "folds": [
+                0.9360937194733392,
+                0.9393351646708505,
+                0.9378828757918869,
+                0.9403949503575086,
+                0.9461389645514308
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.9859605738983175,
+              "std": 0.0022256469026516543,
+              "folds": [
+                0.984569970845481,
+                0.983692905733722,
+                0.9855563654033042,
+                0.9858381924198251,
+                0.9901454350892553
+              ]
+            },
+            "precision": {
+              "mean": 0.9154371075909014,
+              "std": 0.004838397517316905,
+              "folds": [
+                0.9136690647482014,
+                0.9225181598062954,
+                0.9140811455847255,
+                0.9186602870813397,
+                0.908256880733945
+              ]
+            },
+            "recall": {
+              "mean": 0.9166666666666666,
+              "std": 0.013384256497671611,
+              "folds": [
+                0.9071428571428571,
+                0.9071428571428571,
+                0.9119047619047619,
+                0.9142857142857143,
+                0.9428571428571428
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 0.8743422919942532,
+            "infer_ms_per_sample_batch": 0.4465445809430898,
+            "infer_ms_per_sample_single": 0.6832489549924503,
+            "n_params": 50001,
+            "model_size_mb": 2.384328,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 0.8105603749863803,
+            "cpu_single_ms": 0.6832489549924503,
+            "cpu_batch_ms": 0.4465445809430898,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "life",
+            "feel",
+            "fuck",
+            "friend",
+            "just",
+            "shit",
+            "kill",
+            "suicid",
+            "die",
+            "mental",
+            "wors",
+            "antidepress",
+            "anymor",
+            "peopl",
+            "haven",
+            "can",
+            "hate",
+            "exist",
+            "don",
+            "med",
+            "therapist",
+            "tire",
+            "world",
+            "failur",
+            "sad",
+            "anybodi",
+            "diagnos",
+            "hope",
+            "im"
+          ],
+          "stability_jaccard": 0.7186297760210802,
+          "stability_jaccard_std": 0.05648506385114769,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "temporal": {
+            "accuracy": 0.9493333333333334,
+            "precision_pos": 0.9192825112107623,
+            "recall_pos": 0.9111111111111111,
+            "f1_pos": 0.9151785714285714,
+            "macro_precision": 0.94066592353707,
+            "macro_recall": 0.9384126984126984,
+            "macro_f1": 0.9395284492123845,
+            "roc_auc": 0.987989417989418,
+            "pr_auc": 0.973723355421053,
+            "confusion": {
+              "tn": 1014,
+              "fp": 36,
+              "fn": 40,
+              "tp": 410
+            }
+          },
+          "macro_f1_ci95": [
+            0.925243255506663,
+            0.9514478698742809
+          ],
+          "plausibility_top20": 0.4,
+          "temporal_ci95": [
+            0.9261251854804307,
+            0.9522112000847721
+          ]
+        },
+        "RF": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.9267155229846769,
+            "precision_pos": 0.8571428571428571,
+            "recall_pos": 0.9066666666666666,
+            "f1_pos": 0.8812095032397408,
+            "macro_precision": 0.9080836236933798,
+            "macro_recall": 0.9209831906121154,
+            "macro_f1": 0.914111495357828,
+            "roc_auc": 0.9775959403742467,
+            "pr_auc": 0.9556652670937064,
+            "confusion": {
+              "tn": 983,
+              "fp": 68,
+              "fn": 42,
+              "tp": 408
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.9204382295880726,
+              "std": 0.006801167367419704,
+              "folds": [
+                0.9219105642051701,
+                0.9131469276637983,
+                0.9123552905008816,
+                0.9300333395351974,
+                0.9247450260353163
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.9758014921713615,
+              "std": 0.004363522692915025,
+              "folds": [
+                0.9772546161321672,
+                0.9699829931972789,
+                0.9718415937803694,
+                0.9778547133138971,
+                0.982073544433095
+              ]
+            },
+            "precision": {
+              "mean": 0.8780404818297521,
+              "std": 0.0067176382410152015,
+              "folds": [
+                0.8724373576309795,
+                0.8803827751196173,
+                0.8782816229116945,
+                0.8891454965357968,
+                0.8699551569506726
+              ]
+            },
+            "recall": {
+              "mean": 0.900952380952381,
+              "std": 0.020570105777576363,
+              "folds": [
+                0.9119047619047619,
+                0.8761904761904762,
+                0.8761904761904762,
+                0.9166666666666666,
+                0.9238095238095239
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 2.033407292001357,
+            "infer_ms_per_sample_batch": 0.45973076282378855,
+            "infer_ms_per_sample_single": 27.09287437501189,
+            "n_params": 320696,
+            "model_size_mb": 27.760543,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 1.7246148329868447,
+            "cpu_single_ms": 27.09287437501189,
+            "cpu_batch_ms": 0.45973076282378855,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "feel",
+            "life",
+            "just",
+            "feel like",
+            "don",
+            "friend",
+            "medit",
+            "like",
+            "peopl",
+            "fuck",
+            "suicid",
+            "shit",
+            "hate",
+            "kill",
+            "kid",
+            "happi",
+            "die",
+            "sad",
+            "anymor",
+            "don know",
+            "divorc",
+            "wors",
+            "teach",
+            "talk",
+            "know",
+            "can",
+            "anxieti",
+            "teacher",
+            "want"
+          ],
+          "stability_jaccard": 0.7714097496706193,
+          "stability_jaccard_std": 0.05106570481234127,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "temporal": {
+            "accuracy": 0.9326666666666666,
+            "precision_pos": 0.8835164835164835,
+            "recall_pos": 0.8933333333333333,
+            "f1_pos": 0.8883977900552487,
+            "macro_precision": 0.9187917345812082,
+            "macro_recall": 0.9214285714285715,
+            "macro_f1": 0.9200938830944501,
+            "roc_auc": 0.9785142857142857,
+            "pr_auc": 0.9621980233537052,
+            "confusion": {
+              "tn": 997,
+              "fp": 53,
+              "fn": 48,
+              "tp": 402
+            }
+          },
+          "macro_f1_ci95": [
+            0.8985823158382727,
+            0.9287558125907582
+          ],
+          "plausibility_top20": 0.5,
+          "temporal_ci95": [
+            0.9047459603627735,
+            0.933910104569852
+          ]
+        },
+        "DistilBERT": {
+          "family": "transformer",
+          "test": {
+            "accuracy": 0.9533644237175216,
+            "precision_pos": 0.9166666666666666,
+            "recall_pos": 0.9288888888888889,
+            "f1_pos": 0.9227373068432672,
+            "macro_precision": 0.9430223285486443,
+            "macro_recall": 0.9463664235119991,
+            "macro_f1": 0.9446701801391908,
+            "roc_auc": 0.9887577968072735,
+            "pr_auc": 0.9767688570630794,
+            "confusion": {
+              "tn": 1013,
+              "fp": 38,
+              "fn": 32,
+              "tp": 418
+            }
+          },
+          "test_seed_agg": {
+            "macro_f1": {
+              "mean": 0.9448514771297051,
+              "std": 0.00046906058540687113
+            },
+            "roc_auc": {
+              "mean": 0.9887186806216303,
+              "std": 0.00012691908888534458
+            },
+            "pr_auc": {
+              "mean": 0.9744853259033132,
+              "std": 0.0019798221227512996
+            },
+            "precision_pos": {
+              "mean": 0.9192076082803654,
+              "std": 0.0034652938364468154
+            },
+            "recall_pos": {
+              "mean": 0.9266666666666667,
+              "std": 0.004800548665487283
+            },
+            "f1_pos": {
+              "mean": 0.9229037773931639,
+              "std": 0.0007748790343277683
+            },
+            "accuracy": {
+              "mean": 0.9535864978902954,
+              "std": 0.00031406030698937973
+            }
+          },
+          "seeds": 3,
+          "seed_list": [
+            1337,
+            2026,
+            42
+          ],
+          "rep_seed": 42,
+          "efficiency": {
+            "train_time_s": 1824.6799935830059,
+            "infer_ms_per_sample_batch": 14.353197118587772,
+            "infer_ms_per_sample_single": 21.199806459990214,
+            "n_params": 66955010.0,
+            "model_size_mb": 267.82004,
+            "train_time_by_seed_s": {
+              "1337": 1016.3099497079966,
+              "2026": 3964.7197399169963,
+              "42": 1824.6799935830059
+            },
+            "train_time_min_s": 1016.3099497079966,
+            "train_time_max_s": 3964.7197399169963,
+            "train_time_spread_ratio": 3.9010931075270188,
+            "hardware": "Apple M1 (mps, 8 GB)",
+            "hardware_source": "in-run label",
+            "train_time_runs_s": 1824.6799935830059,
+            "cpu_single_ms": 35.79059292002057,
+            "cpu_batch_ms": 25.239225249999436,
+            "train_time_basis": "median of seeds (in-run)",
+            "timing_source": "benchmark.json"
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.2452875087934413,
+              "val_macro_f1": 0.9492022142624552,
+              "val_roc_auc": 0.9916148148148148,
+              "epoch_time_s": 1193.7996027499903
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.08223740295107876,
+              "val_macro_f1": 0.9595494709969707,
+              "val_roc_auc": 0.9936825396825397,
+              "epoch_time_s": 629.425931832986
+            }
+          ],
+          "best_epoch": 2,
+          "truncation_rate": 0.262,
+          "top_pos": [
+            "depression",
+            "depressed",
+            "suicide",
+            "die",
+            "suicidal",
+            "sad",
+            "therapist",
+            "anxiety",
+            "stress",
+            "shit",
+            "hate",
+            "angry",
+            "dead",
+            "anxious",
+            "died",
+            "pretty",
+            "university",
+            "mental",
+            "future",
+            "press",
+            "life",
+            "sleep",
+            "horrible",
+            "death",
+            "issues",
+            "top",
+            "fucking",
+            "problems",
+            "kill",
+            "college"
+          ],
+          "stability_jaccard": 0.32641975308641974,
+          "stability_jaccard_std": 0.04748964061302245,
+          "stability_basis": "3 seeds (3 pairs)",
+          "temporal": {
+            "accuracy": 0.9626666666666667,
+            "precision_pos": 0.933920704845815,
+            "recall_pos": 0.9422222222222222,
+            "f1_pos": 0.9380530973451328,
+            "macro_precision": 0.9545320541437488,
+            "macro_recall": 0.9568253968253968,
+            "macro_f1": 0.9556677700466122,
+            "roc_auc": 0.9931343915343915,
+            "pr_auc": 0.9844190526726697,
+            "confusion": {
+              "tn": 1020,
+              "fp": 30,
+              "fn": 26,
+              "tp": 424
+            }
+          },
+          "temporal_seed_agg": {
+            "macro_f1": {
+              "mean": 0.9593951297821303,
+              "std": 0.0027044006046750622
+            }
+          },
+          "macro_f1_ci95": [
+            0.9315318043706393,
+            0.9567343532266852
+          ],
+          "plausibility_top20": 0.6,
+          "temporal_ci95": [
+            0.9438979357952346,
+            0.9665966322815173
+          ]
+        },
+        "MentalBERT": {
+          "family": "transformer",
+          "test": {
+            "accuracy": 0.9586942038640907,
+            "precision_pos": 0.9292035398230089,
+            "recall_pos": 0.9333333333333333,
+            "f1_pos": 0.9312638580931264,
+            "macro_precision": 0.950302437213697,
+            "macro_recall": 0.9514430700919759,
+            "macro_f1": 0.9508700242846584,
+            "roc_auc": 0.9890199809705044,
+            "pr_auc": 0.9775202817583523,
+            "confusion": {
+              "tn": 1019,
+              "fp": 32,
+              "fn": 30,
+              "tp": 420
+            }
+          },
+          "test_seed_agg": {
+            "macro_f1": {
+              "mean": 0.9519547018013608,
+              "std": 0.0022486074867561394
+            },
+            "roc_auc": {
+              "mean": 0.9898826514430702,
+              "std": 0.0007325941403445618
+            },
+            "pr_auc": {
+              "mean": 0.9796156210254798,
+              "std": 0.0016608680429579224
+            },
+            "precision_pos": {
+              "mean": 0.9214497111370027,
+              "std": 0.008956867044633556
+            },
+            "recall_pos": {
+              "mean": 0.9451851851851852,
+              "std": 0.008574694002066837
+            },
+            "f1_pos": {
+              "mean": 0.9330936451542514,
+              "std": 0.003079721797116325
+            },
+            "accuracy": {
+              "mean": 0.9593604263824117,
+              "std": 0.0019613059885249624
+            }
+          },
+          "seeds": 3,
+          "seed_list": [
+            1337,
+            2026,
+            42
+          ],
+          "rep_seed": 42,
+          "efficiency": {
+            "train_time_s": 30675.653556177,
+            "infer_ms_per_sample_batch": 28.530316067289515,
+            "infer_ms_per_sample_single": 39.37756937499216,
+            "n_params": 109483778.0,
+            "model_size_mb": 437.935112,
+            "train_time_by_seed_s": {
+              "1337": 30675.653556177,
+              "2026": 30953.856713370013,
+              "42": 8008.810737767009
+            },
+            "train_time_min_s": 8008.810737767009,
+            "train_time_max_s": 30953.856713370013,
+            "train_time_spread_ratio": 3.8649754285491413,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)",
+            "hardware_source": "run_all.log (VPS queue)",
+            "train_time_runs_s": 30675.653556177,
+            "cpu_single_ms": 94.14060145500116,
+            "cpu_batch_ms": 48.557574749997,
+            "train_time_basis": "median of seeds (in-run)",
+            "timing_source": "benchmark.json"
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.1877987081256828,
+              "val_macro_f1": 0.9682941625325778,
+              "val_roc_auc": 0.9933904761904762,
+              "epoch_time_s": 3983.96642876399
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.06014616456388363,
+              "val_macro_f1": 0.9668340057782532,
+              "val_roc_auc": 0.9944751322751323,
+              "epoch_time_s": 4024.8219335790054
+            }
+          ],
+          "best_epoch": 1,
+          "truncation_rate": 0.262,
+          "top_pos": [
+            "depression",
+            "suicidal",
+            "depressed",
+            "suicide",
+            "therapist",
+            "sad",
+            "die",
+            "mental",
+            "self",
+            "life",
+            "anxiety",
+            "death",
+            "fucking",
+            "friends",
+            "shit",
+            "feel",
+            "person",
+            "horrible",
+            "live",
+            "anyone",
+            "hate",
+            "kill",
+            "such",
+            "emotions",
+            "love",
+            "alone",
+            "issues",
+            "night",
+            "girlfriend",
+            "dead"
+          ],
+          "stability_jaccard": 0.5144927536231885,
+          "stability_jaccard_std": 0.01024792436502242,
+          "stability_basis": "3 seeds (3 pairs)",
+          "temporal": {
+            "accuracy": 0.972,
+            "precision_pos": 0.9513274336283186,
+            "recall_pos": 0.9555555555555556,
+            "f1_pos": 0.9534368070953437,
+            "macro_precision": 0.9661217320813349,
+            "macro_recall": 0.9673015873015873,
+            "macro_f1": 0.9667088706592066,
+            "roc_auc": 0.9940656084656085,
+            "pr_auc": 0.9868002878209902,
+            "confusion": {
+              "tn": 1028,
+              "fp": 22,
+              "fn": 20,
+              "tp": 430
+            }
+          },
+          "temporal_seed_agg": {
+            "macro_f1": {
+              "mean": 0.96552506398734,
+              "std": 0.0013249307702466004
+            }
+          },
+          "macro_f1_ci95": [
+            0.939152197382514,
+            0.9622966961290237
+          ],
+          "plausibility_top20": 0.5,
+          "temporal_ci95": [
+            0.9558882839282113,
+            0.9762166707328488
+          ]
+        }
+      },
+      "best_classical": "SVM",
+      "tests": {
+        "LR_vs_SVM": {
+          "mcnemar": {
+            "a_right_b_wrong": 5,
+            "a_wrong_b_right": 9,
+            "chi2_cc": 0.6428571428571429,
+            "p_chi2": 0.4226780741706353,
+            "p_exact": 0.4239501953125
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.0030143806522048323,
+            "ci95": [
+              -0.0026924374536876684,
+              0.008781013436390117
+            ],
+            "p_one_sided_b_le_a": 0.1665
+          }
+        },
+        "LR_vs_RF": {
+          "mcnemar": {
+            "a_right_b_wrong": 40,
+            "a_wrong_b_right": 12,
+            "chi2_cc": 14.01923076923077,
+            "p_chi2": 0.00018095049043753697,
+            "p_exact": 0.0001275387838557407
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": -0.02158608668280535,
+            "ci95": [
+              -0.03260702666520587,
+              -0.010710625878751165
+            ],
+            "p_one_sided_b_le_a": 1.0
+          }
+        },
+        "LR_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 34,
+            "a_wrong_b_right": 46,
+            "chi2_cc": 1.5125,
+            "p_chi2": 0.21875800453339211,
+            "p_exact": 0.21851803947870374
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.009148299770730624,
+            "ci95": [
+              -0.004216861400424316,
+              0.022690280679209498
+            ],
+            "p_one_sided_b_le_a": 0.0965
+          }
+        },
+        "LR_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 30,
+            "a_wrong_b_right": 50,
+            "chi2_cc": 4.5125,
+            "p_chi2": 0.03364802587476168,
+            "p_exact": 0.03299261842647619
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.014897934975776718,
+            "ci95": [
+              0.001310278435716425,
+              0.028724359019545963
+            ],
+            "p_one_sided_b_le_a": 0.014
+          }
+        },
+        "SVM_vs_RF": {
+          "mcnemar": {
+            "a_right_b_wrong": 45,
+            "a_wrong_b_right": 13,
+            "chi2_cc": 16.56896551724138,
+            "p_chi2": 4.6912458210979224e-05,
+            "p_exact": 3.011590962911926e-05
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": -0.02460457661389844,
+            "ci95": [
+              -0.03572411365738589,
+              -0.013725111949094388
+            ],
+            "p_one_sided_b_le_a": 1.0
+          }
+        },
+        "SVM_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 34,
+            "a_wrong_b_right": 42,
+            "chi2_cc": 0.6447368421052632,
+            "p_chi2": 0.42200070503759224,
+            "p_exact": 0.42219110499231566
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.006188493648503142,
+            "ci95": [
+              -0.007167117845642068,
+              0.01930136196943383
+            ],
+            "p_one_sided_b_le_a": 0.1845
+          }
+        },
+        "SVM_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 31,
+            "a_wrong_b_right": 47,
+            "chi2_cc": 2.8846153846153846,
+            "p_chi2": 0.08942935902899374,
+            "p_exact": 0.08878242522208005
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.012400330982103743,
+            "ci95": [
+              -0.0005310215068723756,
+              0.025581528262659258
+            ],
+            "p_one_sided_b_le_a": 0.0335
+          }
+        },
+        "RF_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 28,
+            "a_wrong_b_right": 68,
+            "chi2_cc": 15.84375,
+            "p_chi2": 6.879337319387613e-05,
+            "p_exact": 5.459154357711447e-05
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.030930126711965836,
+            "ci95": [
+              0.015925481202724204,
+              0.04617040387579826
+            ],
+            "p_one_sided_b_le_a": 0.0
+          }
+        },
+        "RF_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 27,
+            "a_wrong_b_right": 75,
+            "chi2_cc": 21.65686274509804,
+            "p_chi2": 3.260414208283713e-06,
+            "p_exact": 2.1476915287407434e-06
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.03701502783332141,
+            "ci95": [
+              0.022181301574129002,
+              0.05135417724053769
+            ],
+            "p_one_sided_b_le_a": 0.0
+          }
+        },
+        "DistilBERT_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 14,
+            "a_wrong_b_right": 22,
+            "chi2_cc": 1.3611111111111112,
+            "p_chi2": 0.24334500914876267,
+            "p_exact": 0.24298495403490966
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.006452200319134011,
+            "ci95": [
+              -0.002367575068941097,
+              0.015710820623558868
+            ],
+            "p_one_sided_b_le_a": 0.0895
+          }
+        }
+      },
+      "temporal_tests": {
+        "SVM_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 29,
+            "a_wrong_b_right": 49,
+            "chi2_cc": 4.628205128205129,
+            "p_chi2": 0.03145044869191871,
+            "p_exact": 0.030786495821399938
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.01638827256571898,
+            "ci95": [
+              0.002430572550639959,
+              0.030703671382882304
+            ],
+            "p_one_sided_b_le_a": 0.011
+          }
+        },
+        "SVM_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 25,
+            "a_wrong_b_right": 59,
+            "chi2_cc": 12.964285714285714,
+            "p_chi2": 0.0003174895656932186,
+            "p_exact": 0.00026645108697203506
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.027277500629615627,
+            "ci95": [
+              0.012827016268908226,
+              0.042425766405613116
+            ],
+            "p_one_sided_b_le_a": 0.0
+          }
+        }
+      },
+      "decisions": {
+        "DistilBERT": {
+          "vs": "SVM",
+          "delta_macro_f1": 0.006017925303807625,
+          "significant": false,
+          "meets_threshold": false,
+          "train_time_ratio": 2086.9172294310097,
+          "train_time_hardware": [
+            "Apple M1 CPU (8 GB)",
+            "Apple M1 (mps, 8 GB)"
+          ],
+          "train_time_ratio_note": "cross-hardware; descriptive only",
+          "latency_ratio_single": 31.027938359926896,
+          "latency_ratio_cpu": 52.38294571620098,
+          "param_ratio": 1339.0734185316294
+        },
+        "MentalBERT": {
+          "vs": "SVM",
+          "delta_macro_f1": 0.012217769449275218,
+          "significant": false,
+          "meets_threshold": false,
+          "train_time_ratio": 35084.26143519845,
+          "train_time_hardware": [
+            "Apple M1 CPU (8 GB)",
+            "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          ],
+          "train_time_ratio_note": "cross-hardware; descriptive only",
+          "latency_ratio_single": 57.632827810804734,
+          "latency_ratio_cpu": 137.7837474424551,
+          "param_ratio": 2189.6317673646527
+        }
+      },
+      "errors": {
+        "LR": {
+          "fp_by_source": {
+            "divorce": 16,
+            "meditation": 12,
+            "parenting": 10,
+            "fitness": 5,
+            "teaching": 4,
+            "jokes": 2,
+            "personalfinance": 1
+          },
+          "neg_count_by_source": {
+            "parenting": 182,
+            "divorce": 163,
+            "meditation": 157,
+            "jokes": 152,
+            "fitness": 151,
+            "personalfinance": 135,
+            "teaching": 111
+          },
+          "fn": 32,
+          "fp": 50,
+          "error_rate_by_length": {
+            "1-50": 0.039603960396039604,
+            "51-150": 0.05263157894736842,
+            "151-300": 0.0549738219895288,
+            ">300": 0.08465608465608465
+          },
+          "n_by_length": {
+            "1-50": 303,
+            "51-150": 627,
+            "151-300": 382,
+            ">300": 189
+          }
+        },
+        "SVM": {
+          "fp_by_source": {
+            "divorce": 15,
+            "meditation": 12,
+            "parenting": 10,
+            "fitness": 4,
+            "teaching": 3,
+            "jokes": 1,
+            "personalfinance": 1
+          },
+          "neg_count_by_source": {
+            "parenting": 182,
+            "divorce": 163,
+            "meditation": 157,
+            "jokes": 152,
+            "fitness": 151,
+            "personalfinance": 135,
+            "teaching": 111
+          },
+          "fn": 32,
+          "fp": 46,
+          "error_rate_by_length": {
+            "1-50": 0.0429042904290429,
+            "51-150": 0.046251993620414676,
+            "151-300": 0.05759162303664921,
+            ">300": 0.07407407407407407
+          },
+          "n_by_length": {
+            "1-50": 303,
+            "51-150": 627,
+            "151-300": 382,
+            ">300": 189
+          }
+        },
+        "RF": {
+          "fp_by_source": {
+            "divorce": 28,
+            "parenting": 16,
+            "meditation": 14,
+            "teaching": 4,
+            "fitness": 3,
+            "jokes": 2,
+            "personalfinance": 1
+          },
+          "neg_count_by_source": {
+            "parenting": 182,
+            "divorce": 163,
+            "meditation": 157,
+            "jokes": 152,
+            "fitness": 151,
+            "personalfinance": 135,
+            "teaching": 111
+          },
+          "fn": 42,
+          "fp": 68,
+          "error_rate_by_length": {
+            "1-50": 0.06930693069306931,
+            "51-150": 0.05901116427432217,
+            "151-300": 0.07591623036649214,
+            ">300": 0.12169312169312169
+          },
+          "n_by_length": {
+            "1-50": 303,
+            "51-150": 627,
+            "151-300": 382,
+            ">300": 189
+          }
+        },
+        "DistilBERT": {
+          "fp_by_source": {
+            "divorce": 17,
+            "meditation": 10,
+            "parenting": 5,
+            "jokes": 2,
+            "personalfinance": 2,
+            "teaching": 1,
+            "fitness": 1
+          },
+          "neg_count_by_source": {
+            "parenting": 182,
+            "divorce": 163,
+            "meditation": 157,
+            "jokes": 152,
+            "fitness": 151,
+            "personalfinance": 135,
+            "teaching": 111
+          },
+          "fn": 32,
+          "fp": 38,
+          "error_rate_by_length": {
+            "1-50": 0.0429042904290429,
+            "51-150": 0.044657097288676235,
+            "151-300": 0.041884816753926704,
+            ">300": 0.06878306878306878
+          },
+          "n_by_length": {
+            "1-50": 303,
+            "51-150": 627,
+            "151-300": 382,
+            ">300": 189
+          }
+        },
+        "MentalBERT": {
+          "fp_by_source": {
+            "divorce": 13,
+            "meditation": 9,
+            "jokes": 4,
+            "parenting": 4,
+            "personalfinance": 2
+          },
+          "neg_count_by_source": {
+            "parenting": 182,
+            "divorce": 163,
+            "meditation": 157,
+            "jokes": 152,
+            "fitness": 151,
+            "personalfinance": 135,
+            "teaching": 111
+          },
+          "fn": 30,
+          "fp": 32,
+          "error_rate_by_length": {
+            "1-50": 0.0429042904290429,
+            "51-150": 0.03987240829346093,
+            "151-300": 0.03664921465968586,
+            ">300": 0.05291005291005291
+          },
+          "n_by_length": {
+            "1-50": 303,
+            "51-150": 627,
+            "151-300": 382,
+            ">300": 189
+          }
+        }
+      },
+      "both_wrong": {
+        "SVM&DistilBERT": 36,
+        "SVM&MentalBERT": 31
+      },
+      "cross_model_top20_jaccard": {
+        "LR~SVM": 0.8181818181818182,
+        "LR~RF": 0.56,
+        "LR~DistilBERT": 0.1935483870967742,
+        "LR~MentalBERT": 0.3103448275862069,
+        "SVM~RF": 0.56,
+        "SVM~DistilBERT": 0.1935483870967742,
+        "SVM~MentalBERT": 0.3103448275862069,
+        "RF~DistilBERT": 0.2,
+        "RF~MentalBERT": 0.32142857142857145,
+        "DistilBERT~MentalBERT": 0.2962962962962963
+      },
+      "learning_curve": {
+        "LR": [
+          {
+            "n_train": 250,
+            "macro_f1": 0.8759333241493319
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.8966510011769133
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.910399941679904
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.9234721847722278
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.930615846868237
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9356639862172209
+          }
+        ],
+        "SVM": [
+          {
+            "n_train": 250,
+            "macro_f1": 0.8748952026082906
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.8969752347614206
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.9109093067426401
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.9277524506809225
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.9351035963454448
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9386522548353832
+          }
+        ],
+        "DistilBERT": [
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9454947333521035,
+            "seed": 1337,
+            "train_time_s": 1016.3099497079966,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9443895178978211,
+            "seed": 2026,
+            "train_time_s": 3964.7197399169963,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9446701801391908,
+            "seed": 42,
+            "train_time_s": 1824.6799935830059,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.9099606159141493,
+            "seed": 42,
+            "train_time_s": 2901.5113755399943,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.9321913764391945,
+            "seed": 42,
+            "train_time_s": 4972.893744876987,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 250,
+            "macro_f1": 0.7476935540760989,
+            "seed": 42,
+            "train_time_s": 1278.8046168779838,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.9375954193451621,
+            "seed": 42,
+            "train_time_s": 9377.671109821007,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.8437834526726455,
+            "seed": 42,
+            "train_time_s": 1732.517443039018,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          }
+        ],
+        "MentalBERT": [
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9550858548554493,
+            "seed": 1337,
+            "train_time_s": 30675.653556177,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9499082262639746,
+            "seed": 2026,
+            "train_time_s": 30953.856713370013,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.9508700242846584,
+            "seed": 42,
+            "train_time_s": 8008.810737767009,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          }
+        ]
+      },
+      "ablations": {
+        "stopwords_retained": {
+          "test": {
+            "accuracy": 0.9460359760159893,
+            "precision_pos": 0.9054945054945055,
+            "recall_pos": 0.9155555555555556,
+            "f1_pos": 0.9104972375690608,
+            "macro_precision": 0.93458281680079,
+            "macro_recall": 0.937321069880537,
+            "macro_f1": 0.9359353140635003,
+            "roc_auc": 0.9874003594460303,
+            "pr_auc": 0.9721925932608396,
+            "confusion": {
+              "tn": 1008,
+              "fp": 43,
+              "fn": 38,
+              "tp": 412
+            }
+          },
+          "top_pos": [
+            "depress",
+            "feel",
+            "life",
+            "myself",
+            "friend",
+            "fuck",
+            "me",
+            "suicid",
+            "die",
+            "just",
+            "shit",
+            "peopl",
+            "mental",
+            "kill",
+            "med",
+            "my depress",
+            "sad",
+            "depress and",
+            "antidepress",
+            "wors"
+          ]
+        },
+        "target_lexicon_masked": {
+          "test": {
+            "accuracy": 0.9340439706862091,
+            "precision_pos": 0.8710359408033826,
+            "recall_pos": 0.9155555555555556,
+            "f1_pos": 0.8927410617551462,
+            "macro_precision": 0.9170354801293178,
+            "macro_recall": 0.9287577968072736,
+            "macro_f1": 0.9225610070680492,
+            "roc_auc": 0.9805877999788561,
+            "pr_auc": 0.9577546251744729,
+            "confusion": {
+              "tn": 990,
+              "fp": 61,
+              "fn": 38,
+              "tp": 412
+            }
+          },
+          "top_pos": [
+            "feel",
+            "life",
+            "friend",
+            "fuck",
+            "just",
+            "kill",
+            "shit",
+            "wors",
+            "die",
+            "peopl",
+            "don",
+            "sad",
+            "med",
+            "therapist",
+            "anymor",
+            "diagnos",
+            "tire",
+            "can",
+            "medic",
+            "im"
+          ]
+        }
+      },
+      "n_test": 1501
+    },
+    "D2": {
+      "models": {
+        "LR": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.7848101265822784,
+            "precision_pos": 0.6233009708737864,
+            "recall_pos": 0.7133333333333334,
+            "f1_pos": 0.6652849740932643,
+            "macro_precision": 0.746234663935879,
+            "macro_recall": 0.7643736124326039,
+            "macro_f1": 0.7533592273510012,
+            "roc_auc": 0.8610994819748387,
+            "pr_auc": 0.7343828756732137,
+            "confusion": {
+              "tn": 857,
+              "fp": 194,
+              "fn": 129,
+              "tp": 321
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.7721596945465917,
+              "std": 0.011801753971339302,
+              "folds": [
+                0.7600888281677312,
+                0.7632605197692575,
+                0.7696740652997527,
+                0.7741344977229985,
+                0.7936405617732187
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.8636666790749571,
+              "std": 0.010164800686110123,
+              "folds": [
+                0.8545602526724976,
+                0.8524416909620992,
+                0.8662390670553937,
+                0.8640792031098153,
+                0.8810131815749794
+              ]
+            },
+            "precision": {
+              "mean": 0.645904837340449,
+              "std": 0.012848199842730635,
+              "folds": [
+                0.6350210970464135,
+                0.6313645621181263,
+                0.6483050847457628,
+                0.6468172484599589,
+                0.6680161943319838
+              ]
+            },
+            "recall": {
+              "mean": 0.7438095238095238,
+              "std": 0.023647064796066923,
+              "folds": [
+                0.7166666666666667,
+                0.7380952380952381,
+                0.7285714285714285,
+                0.75,
+                0.7857142857142857
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 0.7960032500050147,
+            "infer_ms_per_sample_batch": 0.46979855096924256,
+            "infer_ms_per_sample_single": 0.6709172949922504,
+            "n_params": 50001,
+            "model_size_mb": 2.394144,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 0.8305279170162976,
+            "cpu_single_ms": 0.6709172949922504,
+            "cpu_batch_ms": 0.46979855096924256,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "life",
+            "kill",
+            "anymor",
+            "happi",
+            "die",
+            "sad",
+            "fuck",
+            "shit",
+            "bed",
+            "motiv",
+            "suicid",
+            "antidepress",
+            "fail",
+            "wors",
+            "lost",
+            "death",
+            "failur",
+            "can",
+            "don",
+            "save",
+            "matter",
+            "bad day",
+            "depress just",
+            "hope",
+            "tire",
+            "world",
+            "don want",
+            "life just",
+            "end"
+          ],
+          "stability_jaccard": 0.6293075684380032,
+          "stability_jaccard_std": 0.07284280898539425,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "macro_f1_ci95": [
+            0.7292682090752611,
+            0.7764220430585574
+          ],
+          "plausibility_top20": 0.45
+        },
+        "SVM": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.7848101265822784,
+            "precision_pos": 0.621414913957935,
+            "recall_pos": 0.7222222222222222,
+            "f1_pos": 0.6680369989722508,
+            "macro_precision": 0.7468015265086199,
+            "macro_recall": 0.766915107305212,
+            "macro_f1": 0.7544226394565542,
+            "roc_auc": 0.8601754942382916,
+            "pr_auc": 0.7335786838894603,
+            "confusion": {
+              "tn": 853,
+              "fp": 198,
+              "fn": 125,
+              "tp": 325
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.7704805519529085,
+              "std": 0.010979901210083381,
+              "folds": [
+                0.7573764809753653,
+                0.7619035181047937,
+                0.7692634789366413,
+                0.7750789319276155,
+                0.7887803498201267
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.8634586521023119,
+              "std": 0.010090145364932579,
+              "folds": [
+                0.8541690962099124,
+                0.8525971817298348,
+                0.865991253644315,
+                0.863807094266278,
+                0.880728634661219
+              ]
+            },
+            "precision": {
+              "mean": 0.6422099532435195,
+              "std": 0.011425303850437326,
+              "folds": [
+                0.6297071129707112,
+                0.6288032454361054,
+                0.6463157894736842,
+                0.6475409836065574,
+                0.6586826347305389
+              ]
+            },
+            "recall": {
+              "mean": 0.7447619047619047,
+              "std": 0.023493135968655255,
+              "folds": [
+                0.7166666666666667,
+                0.7380952380952381,
+                0.7309523809523809,
+                0.7523809523809524,
+                0.7857142857142857
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 0.7471019999939017,
+            "infer_ms_per_sample_batch": 0.47042874150349046,
+            "infer_ms_per_sample_single": 0.6689560399900074,
+            "n_params": 50001,
+            "model_size_mb": 2.394039,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 0.7941327500157058,
+            "cpu_single_ms": 0.6689560399900074,
+            "cpu_batch_ms": 0.47042874150349046,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "life",
+            "kill",
+            "anymor",
+            "die",
+            "happi",
+            "sad",
+            "fuck",
+            "shit",
+            "bed",
+            "motiv",
+            "suicid",
+            "antidepress",
+            "fail",
+            "wors",
+            "failur",
+            "lost",
+            "death",
+            "can",
+            "bad day",
+            "matter",
+            "don",
+            "world",
+            "save",
+            "tire",
+            "hope",
+            "depress just",
+            "don want",
+            "life just",
+            "end"
+          ],
+          "stability_jaccard": 0.6706699098003447,
+          "stability_jaccard_std": 0.08134598131321219,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "macro_f1_ci95": [
+            0.7305115825390527,
+            0.7771311699050667
+          ],
+          "plausibility_top20": 0.5
+        },
+        "RF": {
+          "family": "classical",
+          "test": {
+            "accuracy": 0.7901399067288475,
+            "precision_pos": 0.6901408450704225,
+            "recall_pos": 0.5444444444444444,
+            "f1_pos": 0.6086956521739131,
+            "macro_precision": 0.755628886758597,
+            "macro_recall": 0.7198911089967226,
+            "macro_f1": 0.732659159723734,
+            "roc_auc": 0.8489924939211334,
+            "pr_auc": 0.7003900292196682,
+            "confusion": {
+              "tn": 941,
+              "fp": 110,
+              "fn": 205,
+              "tp": 245
+            }
+          },
+          "seeds": 1,
+          "cv": {
+            "f1_macro": {
+              "mean": 0.7298766406260677,
+              "std": 0.012404107931203725,
+              "folds": [
+                0.7288716483077953,
+                0.7190689141153537,
+                0.7234184734184734,
+                0.7538928084921683,
+                0.7241313587965481
+              ]
+            },
+            "roc_auc": {
+              "mean": 0.8433098111855278,
+              "std": 0.00439372105875247,
+              "folds": [
+                0.8399538386783285,
+                0.8369314868804665,
+                0.8439358600583091,
+                0.846700680272109,
+                0.8490271900384261
+              ]
+            },
+            "precision": {
+              "mean": 0.6910946496961266,
+              "std": 0.0119337469643567,
+              "folds": [
+                0.6880733944954128,
+                0.6707317073170732,
+                0.698051948051948,
+                0.7065527065527065,
+                0.692063492063492
+              ]
+            },
+            "recall": {
+              "mean": 0.5361904761904761,
+              "std": 0.028228095876721777,
+              "folds": [
+                0.5357142857142857,
+                0.5238095238095238,
+                0.5119047619047619,
+                0.5904761904761905,
+                0.5190476190476191
+              ]
+            }
+          },
+          "efficiency": {
+            "train_time_s": 1.6137963750006747,
+            "infer_ms_per_sample_batch": 0.500222823449887,
+            "infer_ms_per_sample_single": 27.177281874974142,
+            "n_params": 239788,
+            "model_size_mb": 21.297314,
+            "hardware": "Apple M1 CPU (8 GB)",
+            "train_time_runs_s": 1.8703549169877078,
+            "cpu_single_ms": 27.177281874974142,
+            "cpu_batch_ms": 0.500222823449887,
+            "timing_source": "benchmark.json"
+          },
+          "top_pos": [
+            "depress",
+            "anxieti",
+            "bpd",
+            "life",
+            "lone",
+            "kill",
+            "happi",
+            "anxiou",
+            "die",
+            "suicid",
+            "fuck",
+            "anymor",
+            "attack",
+            "panic",
+            "don",
+            "shit",
+            "just",
+            "motiv",
+            "sad",
+            "panic attack",
+            "want",
+            "fp",
+            "relationship",
+            "talk",
+            "friend",
+            "disord",
+            "year",
+            "mental",
+            "mental health",
+            "health"
+          ],
+          "stability_jaccard": 0.7728213815170337,
+          "stability_jaccard_std": 0.07182023752210874,
+          "stability_basis": "5 CV folds (10 pairs)",
+          "macro_f1_ci95": [
+            0.7074951143838734,
+            0.7572381399290196
+          ],
+          "plausibility_top20": 0.5
+        },
+        "DistilBERT": {
+          "family": "transformer",
+          "test": {
+            "accuracy": 0.8027981345769487,
+            "precision_pos": 0.668859649122807,
+            "recall_pos": 0.6777777777777778,
+            "f1_pos": 0.673289183222958,
+            "macro_precision": 0.7650518341307815,
+            "macro_recall": 0.7670525425520669,
+            "macro_f1": 0.7660339045885782,
+            "roc_auc": 0.8702780420763294,
+            "pr_auc": 0.7345257056649324,
+            "confusion": {
+              "tn": 900,
+              "fp": 151,
+              "fn": 145,
+              "tp": 305
+            }
+          },
+          "test_seed_agg": {
+            "macro_f1": {
+              "mean": 0.7667716786903229,
+              "std": 0.0029179360604575256
+            },
+            "roc_auc": {
+              "mean": 0.87005250731226,
+              "std": 0.0005584369817680498
+            },
+            "pr_auc": {
+              "mean": 0.7332480181716936,
+              "std": 0.0065332501161533794
+            },
+            "precision_pos": {
+              "mean": 0.6459553943729276,
+              "std": 0.01779909458772204
+            },
+            "recall_pos": {
+              "mean": 0.7244444444444444,
+              "std": 0.03330863282358089
+            },
+            "f1_pos": {
+              "mean": 0.6820424700648539,
+              "std": 0.006642068800727989
+            },
+            "accuracy": {
+              "mean": 0.7976904286031535,
+              "std": 0.0050543223081239525
+            }
+          },
+          "seeds": 3,
+          "seed_list": [
+            1337,
+            2026,
+            42
+          ],
+          "rep_seed": 2026,
+          "efficiency": {
+            "train_time_s": 1090.5133576670196,
+            "infer_ms_per_sample_batch": 14.353197118587772,
+            "infer_ms_per_sample_single": 21.199806459990214,
+            "n_params": 66955010.0,
+            "model_size_mb": 267.82004,
+            "train_time_by_seed_s": {
+              "1337": 1090.5133576670196,
+              "2026": 924.0497106249968,
+              "42": 1339.4301465000026
+            },
+            "train_time_min_s": 924.0497106249968,
+            "train_time_max_s": 1339.4301465000026,
+            "train_time_spread_ratio": 1.4495217422816529,
+            "hardware": "Apple M1 (mps, 8 GB)",
+            "hardware_source": "in-run label",
+            "train_time_runs_s": 1090.5133576670196,
+            "cpu_single_ms": 35.79059292002057,
+            "cpu_batch_ms": 25.239225249999436,
+            "train_time_basis": "median of seeds (in-run)",
+            "timing_source": "benchmark.json"
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.5314557398302214,
+              "val_macro_f1": 0.7589550235346683,
+              "val_roc_auc": 0.8798984126984126,
+              "epoch_time_s": 465.3624725420086
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.38211155114855083,
+              "val_macro_f1": 0.795732669774006,
+              "val_roc_auc": 0.8788275132275132,
+              "epoch_time_s": 458.3978267920029
+            }
+          ],
+          "best_epoch": 2,
+          "truncation_rate": 0.318,
+          "top_pos": [
+            "depression",
+            "depressive",
+            "depressed",
+            "sadness",
+            "die",
+            "sad",
+            "meds",
+            "suicide",
+            "suicidal",
+            "tears",
+            "death",
+            "negative",
+            "kill",
+            "already",
+            "shit",
+            "fuck",
+            "sleep",
+            "severe",
+            "friend",
+            "dont",
+            "guilty",
+            "cant",
+            "medication",
+            "stop",
+            "happy",
+            "issues",
+            "dead",
+            "bad",
+            "kids",
+            "broke"
+          ],
+          "stability_jaccard": 0.6210526315789474,
+          "stability_jaccard_std": 0.014886458551295731,
+          "stability_basis": "3 seeds (3 pairs)",
+          "macro_f1_ci95": [
+            0.7421536079314797,
+            0.7887327017105259
+          ],
+          "plausibility_top20": 0.55
+        },
+        "MentalBERT": {
+          "family": "transformer",
+          "test": {
+            "accuracy": 0.7981345769487008,
+            "precision_pos": 0.6416184971098265,
+            "recall_pos": 0.74,
+            "f1_pos": 0.6873065015479877,
+            "macro_precision": 0.7612369471292514,
+            "macro_recall": 0.7815128449096098,
+            "macro_f1": 0.769132837591505,
+            "roc_auc": 0.8766825245797654,
+            "pr_auc": 0.7521746303284566,
+            "confusion": {
+              "tn": 865,
+              "fp": 186,
+              "fn": 117,
+              "tp": 333
+            }
+          },
+          "test_seed_agg": {
+            "macro_f1": {
+              "mean": 0.7701385760248551,
+              "std": 0.0015130126319758328
+            },
+            "roc_auc": {
+              "mean": 0.8753405927335519,
+              "std": 0.0010313034096207717
+            },
+            "pr_auc": {
+              "mean": 0.7511568506099788,
+              "std": 0.0008867536414051432
+            },
+            "precision_pos": {
+              "mean": 0.652296821212341,
+              "std": 0.009792112289344956
+            },
+            "recall_pos": {
+              "mean": 0.722962962962963,
+              "std": 0.013618352822852023
+            },
+            "f1_pos": {
+              "mean": 0.6856206184833279,
+              "std": 0.0012788826174431357
+            },
+            "accuracy": {
+              "mean": 0.8012436153675327,
+              "std": 0.0030931353047266943
+            }
+          },
+          "seeds": 3,
+          "seed_list": [
+            1337,
+            2026,
+            42
+          ],
+          "rep_seed": 1337,
+          "efficiency": {
+            "train_time_s": 33907.940249202,
+            "infer_ms_per_sample_batch": 28.530316067289515,
+            "infer_ms_per_sample_single": 39.37756937499216,
+            "n_params": 109483778.0,
+            "model_size_mb": 437.935112,
+            "train_time_by_seed_s": {
+              "1337": 33907.940249202,
+              "2026": 34754.036700228986,
+              "42": 8664.526350218992
+            },
+            "train_time_min_s": 8664.526350218992,
+            "train_time_max_s": 34754.036700228986,
+            "train_time_spread_ratio": 4.011071730349183,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)",
+            "hardware_source": "run_all.log (VPS queue)",
+            "train_time_runs_s": 33907.940249202,
+            "cpu_single_ms": 94.14060145500116,
+            "cpu_batch_ms": 48.557574749997,
+            "train_time_basis": "median of seeds (in-run)",
+            "timing_source": "benchmark.json"
+          },
+          "history": [
+            {
+              "epoch": 1,
+              "train_loss": 0.498684331033911,
+              "val_macro_f1": 0.7820709065404017,
+              "val_roc_auc": 0.8848677248677248,
+              "epoch_time_s": 17018.023130266985
+            },
+            {
+              "epoch": 2,
+              "train_loss": 0.35011703556776047,
+              "val_macro_f1": 0.7925925925925925,
+              "val_roc_auc": 0.8831619047619048,
+              "epoch_time_s": 16889.82629043699
+            }
+          ],
+          "best_epoch": 2,
+          "truncation_rate": 0.318,
+          "top_pos": [
+            "depression",
+            "depressed",
+            "depressive",
+            "sadness",
+            "sad",
+            "suicide",
+            "die",
+            "motivation",
+            "human",
+            "lost",
+            "rant",
+            "suicidal",
+            "world",
+            "exams",
+            "death",
+            "negative",
+            "meds",
+            "mum",
+            "exhausted",
+            "tears",
+            "guilty",
+            "horrible",
+            "crying",
+            "anymore",
+            "account",
+            "fucking",
+            "shit",
+            "effects",
+            "problems",
+            "happy"
+          ],
+          "stability_jaccard": 0.5517075517075517,
+          "stability_jaccard_std": 0.1293484435836898,
+          "stability_basis": "3 seeds (3 pairs)",
+          "macro_f1_ci95": [
+            0.7447414510873737,
+            0.7918036250967624
+          ],
+          "plausibility_top20": 0.5
+        }
+      },
+      "best_classical": "LR",
+      "tests": {
+        "LR_vs_SVM": {
+          "mcnemar": {
+            "a_right_b_wrong": 4,
+            "a_wrong_b_right": 4,
+            "chi2_cc": 0.125,
+            "p_chi2": 0.7236736098317629,
+            "p_exact": 1.0
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.0011177694255921082,
+            "ci95": [
+              -0.002845010064838857,
+              0.0056412478983388905
+            ],
+            "p_one_sided_b_le_a": 0.311
+          }
+        },
+        "LR_vs_RF": {
+          "mcnemar": {
+            "a_right_b_wrong": 94,
+            "a_wrong_b_right": 102,
+            "chi2_cc": 0.25,
+            "p_chi2": 0.6170750774519739,
+            "p_exact": 0.6171884623458008
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": -0.020937508481182657,
+            "ci95": [
+              -0.0421645829442838,
+              0.0007634593161946736
+            ],
+            "p_one_sided_b_le_a": 0.9715
+          }
+        },
+        "LR_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 97,
+            "a_wrong_b_right": 124,
+            "chi2_cc": 3.0588235294117645,
+            "p_chi2": 0.08029978979344932,
+            "p_exact": 0.0800647248202556
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.012469153809462792,
+            "ci95": [
+              -0.009560472507681338,
+              0.03442724781325487
+            ],
+            "p_one_sided_b_le_a": 0.1275
+          }
+        },
+        "LR_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 105,
+            "a_wrong_b_right": 125,
+            "chi2_cc": 1.5695652173913044,
+            "p_chi2": 0.21027016591419923,
+            "p_exact": 0.21017672762224282
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.015473333988414308,
+            "ci95": [
+              -0.007750898024011643,
+              0.03722713207957527
+            ],
+            "p_one_sided_b_le_a": 0.0865
+          }
+        },
+        "SVM_vs_RF": {
+          "mcnemar": {
+            "a_right_b_wrong": 96,
+            "a_wrong_b_right": 104,
+            "chi2_cc": 0.245,
+            "p_chi2": 0.6206179464376897,
+            "p_exact": 0.6207289280968303
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": -0.021752603279042396,
+            "ci95": [
+              -0.04381577053983886,
+              -0.0006016256830627228
+            ],
+            "p_one_sided_b_le_a": 0.9775
+          }
+        },
+        "SVM_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 97,
+            "a_wrong_b_right": 124,
+            "chi2_cc": 3.0588235294117645,
+            "p_chi2": 0.08029978979344932,
+            "p_exact": 0.0800647248202556
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.012016629115358491,
+            "ci95": [
+              -0.01058798793218478,
+              0.033738832373358486
+            ],
+            "p_one_sided_b_le_a": 0.147
+          }
+        },
+        "SVM_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 104,
+            "a_wrong_b_right": 124,
+            "chi2_cc": 1.5833333333333333,
+            "p_chi2": 0.20828120636884928,
+            "p_exact": 0.2081848941841446
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.015008650332213548,
+            "ci95": [
+              -0.0072468168143101615,
+              0.03780802847682172
+            ],
+            "p_one_sided_b_le_a": 0.098
+          }
+        },
+        "RF_vs_DistilBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 111,
+            "a_wrong_b_right": 130,
+            "chi2_cc": 1.3443983402489628,
+            "p_chi2": 0.24625979895383032,
+            "p_exact": 0.24620429468798702
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.03335054237599387,
+            "ci95": [
+              0.008002703439241426,
+              0.0577073426078608
+            ],
+            "p_one_sided_b_le_a": 0.0055
+          }
+        },
+        "RF_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 133,
+            "a_wrong_b_right": 145,
+            "chi2_cc": 0.4352517985611511,
+            "p_chi2": 0.5094231585898559,
+            "p_exact": 0.5094955118443171
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.036149222392669864,
+            "ci95": [
+              0.011225987710338637,
+              0.06167850339798031
+            ],
+            "p_one_sided_b_le_a": 0.003
+          }
+        },
+        "DistilBERT_vs_MentalBERT": {
+          "mcnemar": {
+            "a_right_b_wrong": 73,
+            "a_wrong_b_right": 66,
+            "chi2_cc": 0.2589928057553957,
+            "p_chi2": 0.6108129565007329,
+            "p_exact": 0.6109736899560239
+          },
+          "paired_bootstrap_b_minus_a": {
+            "delta_mean": 0.003237831549551121,
+            "ci95": [
+              -0.013265558988218138,
+              0.020251585051145517
+            ],
+            "p_one_sided_b_le_a": 0.356
+          }
+        }
+      },
+      "temporal_tests": {},
+      "decisions": {
+        "DistilBERT": {
+          "vs": "LR",
+          "delta_macro_f1": 0.012674677237576981,
+          "significant": false,
+          "meets_threshold": false,
+          "train_time_ratio": 1369.9860618158903,
+          "train_time_hardware": [
+            "Apple M1 CPU (8 GB)",
+            "Apple M1 (mps, 8 GB)"
+          ],
+          "train_time_ratio_note": "cross-hardware; descriptive only",
+          "latency_ratio_single": 31.598241121858525,
+          "latency_ratio_cpu": 53.34575988301804,
+          "param_ratio": 1339.0734185316294
+        },
+        "MentalBERT": {
+          "vs": "LR",
+          "delta_macro_f1": 0.01577361024050372,
+          "significant": false,
+          "meets_threshold": false,
+          "train_time_ratio": 42597.74096272646,
+          "train_time_hardware": [
+            "Apple M1 CPU (8 GB)",
+            "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          ],
+          "train_time_ratio_note": "cross-hardware; descriptive only",
+          "latency_ratio_single": 58.69213637643222,
+          "latency_ratio_cpu": 140.31625381797403,
+          "param_ratio": 2189.6317673646527
+        }
+      },
+      "errors": {
+        "LR": {
+          "fp_by_source": {
+            "mentalhealth": 82,
+            "lonely": 59,
+            "bpd": 42,
+            "anxiety": 11
+          },
+          "neg_count_by_source": {
+            "lonely": 276,
+            "mentalhealth": 269,
+            "anxiety": 257,
+            "bpd": 249
+          },
+          "fn": 129,
+          "fp": 194,
+          "error_rate_by_length": {
+            "1-50": 0.24583333333333332,
+            "51-150": 0.2205128205128205,
+            "151-300": 0.18778280542986425,
+            ">300": 0.2222222222222222
+          },
+          "n_by_length": {
+            "1-50": 240,
+            "51-150": 585,
+            "151-300": 442,
+            ">300": 234
+          }
+        },
+        "SVM": {
+          "fp_by_source": {
+            "mentalhealth": 84,
+            "lonely": 60,
+            "bpd": 43,
+            "anxiety": 11
+          },
+          "neg_count_by_source": {
+            "lonely": 276,
+            "mentalhealth": 269,
+            "anxiety": 257,
+            "bpd": 249
+          },
+          "fn": 125,
+          "fp": 198,
+          "error_rate_by_length": {
+            "1-50": 0.24166666666666667,
+            "51-150": 0.2222222222222222,
+            "151-300": 0.18778280542986425,
+            ">300": 0.2222222222222222
+          },
+          "n_by_length": {
+            "1-50": 240,
+            "51-150": 585,
+            "151-300": 442,
+            ">300": 234
+          }
+        },
+        "RF": {
+          "fp_by_source": {
+            "mentalhealth": 40,
+            "lonely": 35,
+            "bpd": 28,
+            "anxiety": 7
+          },
+          "neg_count_by_source": {
+            "lonely": 276,
+            "mentalhealth": 269,
+            "anxiety": 257,
+            "bpd": 249
+          },
+          "fn": 205,
+          "fp": 110,
+          "error_rate_by_length": {
+            "1-50": 0.24166666666666667,
+            "51-150": 0.20512820512820512,
+            "151-300": 0.2081447963800905,
+            ">300": 0.19230769230769232
+          },
+          "n_by_length": {
+            "1-50": 240,
+            "51-150": 585,
+            "151-300": 442,
+            ">300": 234
+          }
+        },
+        "DistilBERT": {
+          "fp_by_source": {
+            "mentalhealth": 71,
+            "lonely": 34,
+            "bpd": 31,
+            "anxiety": 15
+          },
+          "neg_count_by_source": {
+            "lonely": 276,
+            "mentalhealth": 269,
+            "anxiety": 257,
+            "bpd": 249
+          },
+          "fn": 145,
+          "fp": 151,
+          "error_rate_by_length": {
+            "1-50": 0.23333333333333334,
+            "51-150": 0.20512820512820512,
+            "151-300": 0.17420814479638008,
+            ">300": 0.18376068376068377
+          },
+          "n_by_length": {
+            "1-50": 240,
+            "51-150": 585,
+            "151-300": 442,
+            ">300": 234
+          }
+        },
+        "MentalBERT": {
+          "fp_by_source": {
+            "mentalhealth": 79,
+            "lonely": 49,
+            "bpd": 39,
+            "anxiety": 19
+          },
+          "neg_count_by_source": {
+            "lonely": 276,
+            "mentalhealth": 269,
+            "anxiety": 257,
+            "bpd": 249
+          },
+          "fn": 117,
+          "fp": 186,
+          "error_rate_by_length": {
+            "1-50": 0.2375,
+            "51-150": 0.20683760683760682,
+            "151-300": 0.17873303167420815,
+            ">300": 0.19658119658119658
+          },
+          "n_by_length": {
+            "1-50": 240,
+            "51-150": 585,
+            "151-300": 442,
+            ">300": 234
+          }
+        }
+      },
+      "both_wrong": {
+        "LR&DistilBERT": 199,
+        "LR&MentalBERT": 198
+      },
+      "cross_model_top20_jaccard": {
+        "LR~SVM": 0.9047619047619048,
+        "LR~RF": 0.4444444444444444,
+        "LR~DistilBERT": 0.2857142857142857,
+        "LR~MentalBERT": 0.2413793103448276,
+        "SVM~RF": 0.39285714285714285,
+        "SVM~DistilBERT": 0.2857142857142857,
+        "SVM~MentalBERT": 0.2413793103448276,
+        "RF~DistilBERT": 0.25,
+        "RF~MentalBERT": 0.16666666666666666,
+        "DistilBERT~MentalBERT": 0.3333333333333333
+      },
+      "learning_curve": {
+        "LR": [
+          {
+            "n_train": 250,
+            "macro_f1": 0.6776307989945345
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.710542086565372
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.7287218173294123
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.7507369120272346
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.7613060428849903
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.7533592273510012
+          }
+        ],
+        "SVM": [
+          {
+            "n_train": 250,
+            "macro_f1": 0.6803065645544131
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.7099279397314118
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.7249830075894956
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.7488037387811772
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.7581366678858348
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.7544226394565542
+          }
+        ],
+        "DistilBERT": [
+          {
+            "n_train": 6999,
+            "macro_f1": 0.7636244182314236,
+            "seed": 1337,
+            "train_time_s": 1090.5133576670196,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.7660339045885782,
+            "seed": 2026,
+            "train_time_s": 924.0497106249968,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.770656713250967,
+            "seed": 42,
+            "train_time_s": 1339.4301465000026,
+            "hardware": "Apple M1 (mps, 8 GB)"
+          },
+          {
+            "n_train": 1000,
+            "macro_f1": 0.6746806253593396,
+            "seed": 42,
+            "train_time_s": 3027.003430737008,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 2000,
+            "macro_f1": 0.7363512974051896,
+            "seed": 42,
+            "train_time_s": 5255.812847924011,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 250,
+            "macro_f1": 0.6201378198670159,
+            "seed": 42,
+            "train_time_s": 1374.6867936630151,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 4000,
+            "macro_f1": 0.7533946519347897,
+            "seed": 42,
+            "train_time_s": 10144.605719861982,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 500,
+            "macro_f1": 0.6279818590584406,
+            "seed": 42,
+            "train_time_s": 1832.7605430569965,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          }
+        ],
+        "MentalBERT": [
+          {
+            "n_train": 6999,
+            "macro_f1": 0.769132837591505,
+            "seed": 1337,
+            "train_time_s": 33907.940249202,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.772277042529844,
+            "seed": 2026,
+            "train_time_s": 34754.036700228986,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          },
+          {
+            "n_train": 6999,
+            "macro_f1": 0.7690058479532164,
+            "seed": 42,
+            "train_time_s": 8664.526350218992,
+            "hardware": "AMD EPYC 9354P VPS (cpu, 4 vCPU, 15 GB)"
+          }
+        ]
+      },
+      "ablations": {
+        "stopwords_retained": {
+          "test": {
+            "accuracy": 0.7908061292471685,
+            "precision_pos": 0.6382113821138211,
+            "recall_pos": 0.6977777777777778,
+            "f1_pos": 0.6666666666666666,
+            "macro_precision": 0.751712232186742,
+            "macro_recall": 0.7642076329421714,
+            "macro_f1": 0.7571197411003237,
+            "roc_auc": 0.8540691405011099,
+            "pr_auc": 0.71899692278467,
+            "confusion": {
+              "tn": 873,
+              "fp": 178,
+              "fn": 136,
+              "tp": 314
+            }
+          },
+          "top_pos": [
+            "depress",
+            "my depress",
+            "life",
+            "happi",
+            "kill",
+            "die",
+            "anymor",
+            "with depress",
+            "sad",
+            "fuck",
+            "kill myself",
+            "noth",
+            "my life",
+            "suicid",
+            "depress and",
+            "of depress",
+            "shit",
+            "motiv",
+            "be depress",
+            "depress for"
+          ]
+        },
+        "target_lexicon_masked": {
+          "test": {
+            "accuracy": 0.7415056628914057,
+            "precision_pos": 0.560546875,
+            "recall_pos": 0.6377777777777778,
+            "f1_pos": 0.5966735966735967,
+            "macro_precision": 0.6978669663169869,
+            "macro_recall": 0.7118479754730944,
+            "macro_f1": 0.703238759121112,
+            "roc_auc": 0.7909271593191669,
+            "pr_auc": 0.6234752536740741,
+            "confusion": {
+              "tn": 826,
+              "fp": 225,
+              "fn": 163,
+              "tp": 287
+            }
+          },
+          "top_pos": [
+            "life",
+            "kill",
+            "happi",
+            "sad",
+            "anymor",
+            "die",
+            "bed",
+            "motiv",
+            "shit",
+            "fuck",
+            "wors",
+            "antidepress",
+            "fail",
+            "death",
+            "failur",
+            "lost",
+            "can",
+            "bad day",
+            "want die",
+            "don"
+          ]
+        }
+      },
+      "n_test": 1501
+    }
+  }
+}

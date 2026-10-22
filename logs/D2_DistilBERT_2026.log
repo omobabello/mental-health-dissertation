@@ -1,0 +1,40 @@
+W1018 13:55:24.516000 34274 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 6534.30it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_projector.bias    | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+vocab_transform.weight  | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+vocab_layer_norm.bias   | UNEXPECTED | 
+pre_classifier.weight   | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+classifier.weight       | MISSING    | 
+classifier.bias         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (653 > 512). Running this sequence through the model will result in indexing errors
+D2_DistilBERT_2026 ep0 step0/875 loss 0.7632
+D2_DistilBERT_2026 ep0 step100/875 loss 0.6818
+D2_DistilBERT_2026 ep0 step200/875 loss 0.6580
+D2_DistilBERT_2026 ep0 step300/875 loss 0.5715
+D2_DistilBERT_2026 ep0 step400/875 loss 0.2845
+D2_DistilBERT_2026 ep0 step500/875 loss 0.5956
+D2_DistilBERT_2026 ep0 step600/875 loss 0.6496
+D2_DistilBERT_2026 ep0 step700/875 loss 0.2236
+D2_DistilBERT_2026 ep0 step800/875 loss 0.6114
+{'epoch': 1, 'train_loss': 0.5314557398302214, 'val_macro_f1': 0.7589550235346683, 'val_roc_auc': 0.8798984126984126, 'epoch_time_s': 465.3624725420086}
+D2_DistilBERT_2026 ep1 step0/875 loss 0.2897
+D2_DistilBERT_2026 ep1 step100/875 loss 0.5830
+D2_DistilBERT_2026 ep1 step200/875 loss 0.3632
+D2_DistilBERT_2026 ep1 step300/875 loss 0.4918
+D2_DistilBERT_2026 ep1 step400/875 loss 0.0786
+D2_DistilBERT_2026 ep1 step500/875 loss 0.5434
+D2_DistilBERT_2026 ep1 step600/875 loss 0.2165
+D2_DistilBERT_2026 ep1 step700/875 loss 0.4747
+D2_DistilBERT_2026 ep1 step800/875 loss 0.5580
+{'epoch': 2, 'train_loss': 0.38211155114855083, 'val_macro_f1': 0.795732669774006, 'val_roc_auc': 0.8788275132275132, 'epoch_time_s': 458.3978267920029}
+DONE D2_DistilBERT_2026 0.7660339045885782 924.0497106249968

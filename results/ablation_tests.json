@@ -1,0 +1,70 @@
+{
+  "D1": {
+    "stopwords_retained": {
+      "macro_f1": 0.9359353140635003,
+      "delta_vs_full": 0.0002713278462793678,
+      "mcnemar": {
+        "full_right_ablation_wrong": 24,
+        "full_wrong_ablation_right": 25,
+        "p_exact": 1.0
+      },
+      "paired_bootstrap_ablation_minus_full": {
+        "delta_mean": 0.000282209261229814,
+        "ci95": [
+          -0.010627571127910924,
+          0.010443599509690874
+        ]
+      }
+    },
+    "target_lexicon_masked": {
+      "macro_f1": 0.9225610070680492,
+      "delta_vs_full": -0.01310297914917169,
+      "mcnemar": {
+        "full_right_ablation_wrong": 34,
+        "full_wrong_ablation_right": 17,
+        "p_exact": 0.024092907698449295
+      },
+      "paired_bootstrap_ablation_minus_full": {
+        "delta_mean": -0.013313571553900061,
+        "ci95": [
+          -0.02453008770899411,
+          -0.0026343681942362536
+        ]
+      }
+    }
+  },
+  "D2": {
+    "stopwords_retained": {
+      "macro_f1": 0.7571197411003237,
+      "delta_vs_full": 0.003760513749322403,
+      "mcnemar": {
+        "full_right_ablation_wrong": 54,
+        "full_wrong_ablation_right": 63,
+        "p_exact": 0.4596913873255535
+      },
+      "paired_bootstrap_ablation_minus_full": {
+        "delta_mean": 0.003793549046085437,
+        "ci95": [
+          -0.011811094361979985,
+          0.019580078578347315
+        ]
+      }
+    },
+    "target_lexicon_masked": {
+      "macro_f1": 0.703238759121112,
+      "delta_vs_full": -0.05012046822988925,
+      "mcnemar": {
+        "full_right_ablation_wrong": 114,
+        "full_wrong_ablation_right": 49,
+        "p_exact": 3.8053085415562225e-07
+      },
+      "paired_bootstrap_ablation_minus_full": {
+        "delta_mean": -0.05012018089985952,
+        "ci95": [
+          -0.06958859487856484,
+          -0.031665090126072104
+        ]
+      }
+    }
+  }
+}

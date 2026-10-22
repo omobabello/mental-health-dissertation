@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "machine": "arm64 macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "torch": "2.14.1",
+    "repeats": 3,
+    "n_single": 200,
+    "note": "idle machine; median of repeats"
+  },
+  "classical": {
+    "D1": {
+      "LR": {
+        "train_time_s": 0.8015111669956241,
+        "cpu_single_ms": 0.6341839599917876,
+        "cpu_batch_ms": 0.4209658840770379,
+        "size_mb": 2.38444,
+        "n_params": 50001
+      },
+      "SVM": {
+        "train_time_s": 0.8743422919942532,
+        "cpu_single_ms": 0.6832489549924503,
+        "cpu_batch_ms": 0.4465445809430898,
+        "size_mb": 2.384328,
+        "n_params": 50001
+      },
+      "RF": {
+        "train_time_s": 2.033407292001357,
+        "cpu_single_ms": 27.09287437501189,
+        "cpu_batch_ms": 0.45973076282378855,
+        "size_mb": 27.760543,
+        "n_params": 320696
+      }
+    },
+    "D2": {
+      "LR": {
+        "train_time_s": 0.7960032500050147,
+        "cpu_single_ms": 0.6709172949922504,
+        "cpu_batch_ms": 0.46979855096924256,
+        "size_mb": 2.394144,
+        "n_params": 50001
+      },
+      "SVM": {
+        "train_time_s": 0.7471019999939017,
+        "cpu_single_ms": 0.6689560399900074,
+        "cpu_batch_ms": 0.47042874150349046,
+        "size_mb": 2.394039,
+        "n_params": 50001
+      },
+      "RF": {
+        "train_time_s": 1.6137963750006747,
+        "cpu_single_ms": 27.177281874974142,
+        "cpu_batch_ms": 0.500222823449887,
+        "size_mb": 21.297314,
+        "n_params": 239788
+      }
+    }
+  },
+  "transformers": {
+    "DistilBERT": {
+      "mps": {
+        "single_ms": 21.199806459990214,
+        "batch_ms": 14.353197118587772,
+        "n_params": 66955010,
+        "size_mb": 267.82004
+      },
+      "cpu": {
+        "single_ms": 35.79059292002057,
+        "batch_ms": 25.239225249999436,
+        "n_params": 66955010,
+        "size_mb": 267.82004
+      }
+    },
+    "MentalBERT": {
+      "mps": {
+        "single_ms": 39.37756937499216,
+        "batch_ms": 28.530316067289515,
+        "n_params": 109483778,
+        "size_mb": 437.935112
+      },
+      "cpu": {
+        "single_ms": 94.14060145500116,
+        "batch_ms": 48.557574749997,
+        "n_params": 109483778,
+        "size_mb": 437.935112
+      }
+    }
+  }
+}

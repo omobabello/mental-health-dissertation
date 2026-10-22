@@ -1,0 +1,1 @@
+[14:53:42] START D1 MentalBERT 42 --micro_batch 4 --grad_ckpt

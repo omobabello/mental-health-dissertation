@@ -1,0 +1,25 @@
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 12385.00it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_projector.bias    | UNEXPECTED | 
+vocab_transform.weight  | UNEXPECTED | 
+vocab_layer_norm.bias   | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+pre_classifier.weight   | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+classifier.weight       | MISSING    | 
+classifier.bias         | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (653 > 512). Running this sequence through the model will result in indexing errors
+D2_DistilBERT_42_n1000 ep0 step0/125 loss 0.7292
+D2_DistilBERT_42_n1000 ep0 step100/125 loss 0.8190
+{'epoch': 1, 'train_loss': 0.6754457876682282, 'val_macro_f1': 0.632934253985532, 'val_roc_auc': 0.7467513227513227, 'epoch_time_s': 1513.2773091240088}
+D2_DistilBERT_42_n1000 ep1 step0/125 loss 0.6715
+D2_DistilBERT_42_n1000 ep1 step100/125 loss 0.4535
+{'epoch': 2, 'train_loss': 0.5894715266227722, 'val_macro_f1': 0.6903129013298103, 'val_roc_auc': 0.7935343915343915, 'epoch_time_s': 1513.695583956025}
+DONE D2_DistilBERT_42_n1000 0.6746806253593396 3027.003430737008
