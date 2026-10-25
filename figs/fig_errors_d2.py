@@ -23,9 +23,11 @@ def _matrices(d):
                      for s in srcs] for m in ms])
     bands = list(e0["error_rate_by_length"])
     mat2 = np.array([[d["errors"][m]["error_rate_by_length"][b] * 100 for b in bands] for m in ms])
-    cols2 = [f"{b}\n(n={e0['n_by_length'][b]})" for b in bands]
+    cols2 = [f"{b.replace('-', '–')}\n(n={e0['n_by_length'][b]})" for b in bands]   # en dash, as in the text
+    # "mentalhealth" is wider than its cell and collided with "lonely": wrap it like Fig. 7's long names
+    cols1 = [{"mentalhealth": "mental-\nhealth"}.get(s, s) for s in srcs]
     # v1 titles verbatim; pre-wrapped at a word boundary so both panels share the same two-line head
-    return ms, [(mat, srcs, "(a) False-positive rate by\nnegative source (%)"),
+    return ms, [(mat, cols1, "(a) False-positive rate by\nnegative source (%)"),
                 (mat2, cols2, "(b) Error rate by post length\n(tokens, %)")]
 
 

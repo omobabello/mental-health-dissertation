@@ -13,7 +13,7 @@ from matplotlib.patches import Patch
 
 from fig_style import FS_ANNOT, axis_lines, FS_LABEL, T, W, plt, save, value_label
 
-VARIANTS = [("baseline", "Protocol (stop-words removed)"), ("stopwords_retained", "Stop-words retained"),
+VARIANTS = [("baseline", "Protocol (stop words removed)"), ("stopwords_retained", "Stop words retained"),
             ("target_lexicon_masked", "Target lexicon masked")]
 # accent (8.8:1) is the darkest, focal mark; the two ablations are a mid teal (3.1:1) and the lighter
 # slate token MUTED (4.8:1). All three clear 3:1 on paper and stay distinct in greyscale (L 0.07/0.29/0.17).

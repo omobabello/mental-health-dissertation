@@ -28,7 +28,7 @@ def draw(an, ds=None, name="fig-macro-f1"):
             value_label(ax, i, v, f"{v:.3f}", dx=7)
             if "test_seed_agg" in d["models"][m]:
                 sd = d["models"][m]["test_seed_agg"]["macro_f1"]["std"]
-                value_label(ax, i, lo, f"seed sd {sd:.4f}", dx=0, dy=-4, ha="center", va="top",
+                value_label(ax, i, lo, f"seed SD {sd:.4f}", dx=0, dy=-4, ha="center", va="top",
                             color=T.MUTED)
         best = d["best_classical"]
         thr = d["models"][best]["test"]["macro_f1"] + an["meta"]["min_delta_f1"]

@@ -30,9 +30,8 @@ NEG_RAMP = {"D1": [(SEM["navy"], T.PAPER), ("#a8c3d1", T.INK)],
 NEG_LINE = {"D1": SEM["navy"], "D2": "#3c4f8c"}
 
 
-# Parity keeps the v1 6-character D1 tokens. If a parity exception is granted, set True to print the
-# full source names (two lines where needed) instead.
-FULL_D1_NAMES = False
+# Full source names (two lines where needed); the round-13 marker found the v1 6-character cuts undefined.
+FULL_D1_NAMES = True
 # (~1,000-post segments are ~30 pt wide: longer names wrap; parity re-joins line-end hyphens)
 FULL_NAME = {"personalfinance": "personal\nfinance", "parenting": "parent-\ning",
              "meditation": "medi-\ntation", "teaching": "teach-\ning"}
