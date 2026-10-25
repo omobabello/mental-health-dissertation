@@ -81,6 +81,7 @@ def main():
                 "mean": float(lens.mean()), "median": float(lens.median()),
                 "p90": float(lens.quantile(0.9)), "max": int(lens.max()),
                 "mean_pos": float(lens[df.label == 1].mean()), "mean_neg": float(lens[df.label == 0].mean()),
+                "median_pos": float(lens[df.label == 1].median()), "median_neg": float(lens[df.label == 0].median()),
             },
             "length_hist_pos": lens[df.label == 1].clip(upper=1000).tolist(),
             "length_hist_neg": lens[df.label == 0].clip(upper=1000).tolist(),
