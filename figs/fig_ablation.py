@@ -1,6 +1,6 @@
 """fig-ablation: LR test macro-F1 under the protocol vs two preprocessing ablations, D1 and D2.
 
-Ported 1:1 from 05_figures.fig_ablation (same fields, variants, order, y-range, value labels);
+Ported 1:1 from 05_figures.fig_ablation (same fields, variants, order, value labels; y-range now from 0);
 only the styling changed. Standalone:  cd experiments && .venv/bin/python -m figs.fig_ablation
 
 Colour: all bars are the same model (LR), so the variants are not model identities. Following
@@ -36,8 +36,8 @@ def draw(an, ds=None, name="fig-ablation"):
     ax.set_xticks(x, CONDS)
     ax.tick_params(axis="x", labelcolor=T.INK, labelsize=FS_LABEL)
     ax.set_xlim(*XLIM)
-    ax.set_ylim(0.6, 1.0)
-    ax.set_yticks(np.arange(0.6, 1.01, 0.1), [f"{t:.1f}" for t in np.arange(0.6, 1.01, 0.1)])
+    ax.set_ylim(0, 1.05)  # bars start at zero so bar length is proportional to macro-F1
+    ax.set_yticks(np.arange(0, 1.01, 0.2), [f"{t:.1f}" for t in np.arange(0, 1.01, 0.2)])
     ax.set_ylabel("LR macro-F1 (test)")
     handles = [Patch(color=s, label=lab) for s, (_, lab) in zip(SHADES, VARIANTS)]
     leg = fig.legend(handles=handles, ncol=3, loc="outside upper left", frameon=False, fontsize=FS_LABEL,
