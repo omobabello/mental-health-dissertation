@@ -19,6 +19,7 @@ from fig_style import (FAMILY, FS_ANNOT, FS_LABEL, FS_TITLE, ORDER, T, W, COLORS
 
 PANELS = [("stability_jaccard", "(a) Top-20 stability (mean pairwise Jaccard)"),
           ("plausibility_top20", "(b) Lexicon plausibility (share of top-20)")]
+YLABELS = ["Mean pairwise Jaccard", "Share of top-20 in lexicon"]  # axis titles (round-10 marking)
 CONDS = ["D1", "D2"]
 GAP_PT = 1.5          # constant white gap between adjacent bars (~2 diagram px)
 BAND_PAD = 0.05       # condition band extends this far (data units) beyond the outer bars
@@ -44,12 +45,14 @@ def _bar_style(m):
 
 
 def _title_to_ticks(fig, axes):
-    """Panel title flush with the left edge of the y tick labels (no y-label in this figure)."""
+    """Panel title flush with the left edge of the y-axis title (or the tick labels when it has none)."""
     fig.canvas.draw()
     r = fig.canvas.get_renderer()
     for ax in axes:
         ab = ax.get_window_extent(r)
         x0 = min(t.get_window_extent(r).x0 for t in ax.get_yticklabels() if t.get_visible() and t.get_text())
+        if ax.yaxis.label.get_text():
+            x0 = min(x0, ax.yaxis.label.get_window_extent(r).x0)
         ax._left_title.set_x((x0 - ab.x0) / ab.width)
 
 
@@ -106,6 +109,8 @@ def draw(an, ds=None, name="fig-interpretability"):
         ax.set_ylim(0, 1)
         ax.set_yticks(np.linspace(0, 1, 6), [f"{v:.1f}" for v in np.linspace(0, 1, 6)])
         ax.yaxis.set_tick_params(labelleft=True)
+        ax.set_ylabel(YLABELS[PANELS.index((key, title))], fontsize=FS_LABEL)
+        ax.set_xlabel("Condition", fontsize=FS_LABEL)
         panel_title(ax, title, size=FS_TITLE - 0.5)
 
     # legend: bar-shaped keys (8 x 8 pt), one frameless row centred over both panels
