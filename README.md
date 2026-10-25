@@ -63,6 +63,10 @@ hf auth login        # MentalBERT (mental/mental-bert-base-uncased) is gated on 
    ```bash
    python 07_ablation_tests.py
    ```
+8. Re-measure classical explanation stability across the transformer seeds (like-for-like with the transformers):
+   ```bash
+   python 08_stability_seeds.py
+   ```
 
 Every number in the dissertation is read from `results/*.json`.
 
@@ -80,7 +84,7 @@ Every number in the dissertation is read from `results/*.json`.
 ## Layout
 
 ```
-01_build_dataset.py … 07_ablation_tests.py   pipeline scripts, run in the order above
+01_build_dataset.py … 08_stability_seeds.py   pipeline scripts, run in the order above
 common.py            paths, seeds, conditions, MIN_DELTA_F1 = 0.02, clean_text, metrics
 fig_style.py, figs/  shared chart theme and one module per chart
 results/             all derived metrics (JSON), one file per transformer run in results/transformers/
